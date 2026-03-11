@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import { TopNav } from "@/components/TopNav";
 
 const bodySans = Source_Sans_3({
   variable: "--font-body",
@@ -13,7 +14,7 @@ const headingSans = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "Create Next Martin Gynther Mørkved",
+  title: "Martin Gynther Mørkved",
   description: "Showcases Martin Gynther Mørkved's CV",
 };
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body
         className={`${bodySans.variable} ${headingSans.variable} antialiased`}
       >
+        <TopNav />
         {children}
       </body>
     </html>

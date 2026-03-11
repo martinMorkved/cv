@@ -6,7 +6,6 @@ import { CVSkills } from "@/components/cv/CVSkills";
 import {
   cvHeader,
   cvGoal,
-  cvLookingFor,
   experience,
   education,
   languages,
@@ -18,7 +17,7 @@ export default function CV() {
   return (
     <div className="cv-page min-h-screen">
       <div className="mx-auto grid max-w-4xl grid-cols-1 gap-14 px-6 py-12 lg:grid-cols-[240px_1fr] lg:gap-20 lg:px-10 lg:py-16">
-        <div className="flex justify-center border-b border-slate-200 pb-12 lg:justify-start lg:border-b-0 lg:border-r lg:border-slate-200 lg:pr-14 lg:pb-0">
+        <div className="flex justify-center border-b border-border pb-12 lg:justify-start lg:border-b-0 lg:border-r lg:border-border lg:pr-14 lg:pb-0">
           <CVSidebar
             name={cvHeader.name}
             title={cvHeader.title}
@@ -32,14 +31,7 @@ export default function CV() {
 
         <main className="min-w-0">
           {cvGoal && (
-            <p className="text-base leading-relaxed text-slate-600">
-              {cvGoal}
-            </p>
-          )}
-          {cvLookingFor && (
-            <p className="mt-3 text-sm font-medium text-sky-700">
-              {cvLookingFor}
-            </p>
+            <p className="text-base leading-relaxed text-muted">{cvGoal}</p>
           )}
 
           <CVSection title="Erfaring" accent>
@@ -66,7 +58,7 @@ export default function CV() {
             </div>
           </CVSection>
 
-          <p className="mt-12 text-sm text-slate-500">
+          <p className="mt-12 text-sm text-muted">
             {referencesNote}
           </p>
         </main>

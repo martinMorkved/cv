@@ -27,7 +27,7 @@ export function BuzzWord({ children, explanation }: BuzzWordProps) {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="cursor-pointer rounded border border-sky-500 bg-sky-50/80 px-1.5 py-0.5 text-slate-800 text-xs font-medium transition hover:border-sky-600 hover:bg-sky-100/80 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:ring-offset-1"
+        className="cursor-pointer rounded border border-accent bg-accent/10 px-1.5 py-0.5 text-foreground text-xs font-medium transition hover:border-accent hover:bg-accent/20 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-1"
         aria-expanded={open}
         aria-haspopup="true"
       >
@@ -35,10 +35,10 @@ export function BuzzWord({ children, explanation }: BuzzWordProps) {
       </button>
       {open && (
         <div
-          className="absolute bottom-full left-1/2 z-20 mb-2 w-80 -translate-x-1/2 rounded-lg border border-slate-900/70 bg-slate-900 px-4 py-2 text-sm shadow-xl text-left"
+          className="absolute bottom-full left-1/2 z-20 mb-2 w-80 -translate-x-1/2 rounded-lg border border-foreground/80 bg-foreground px-4 py-2 text-sm shadow-xl text-left"
           role="tooltip"
         >
-          <p className="leading-relaxed text-slate-100">{explanation}</p>
+          <p className="leading-relaxed text-surface">{explanation}</p>
         </div>
       )}
     </span>

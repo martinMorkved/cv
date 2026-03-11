@@ -20,7 +20,7 @@ export type EducationItem = {
 
 export const cvHeader = {
   name: "Martin Gynther Mørkved",
-  title: "Frontend-utvikler & fotograf",
+  title: "Frontend-utvikler",
   birthDate: "14.03.1991",
   email: "morkved.martin@gmail.com",
   phone: "+47 92 48 48 12",
@@ -29,10 +29,7 @@ export const cvHeader = {
 };
 
 export const cvGoal =
-  "Frontend-utvikler som liker å kombinere godt håndverk i kode med sterke visuelle uttrykk. Trives best når jeg bygger brukervennlige løsninger sammen med folk som vil litt mer enn \"godt nok\".";
-
-export const cvLookingFor =
-  "Ser særlig etter roller innen frontend-utvikling og webutvikling med fokus på brukeropplevelser.";
+  "Frontend-utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne prosjekter. Jobber i små team hvor jeg følger prosjekter fra kundemøte til ferdig løsning. Lærer React, Next.js og TypeScript gjennom egne prosjekter.";
 
 export const experience: ExperienceItem[] = [
   {
@@ -42,17 +39,17 @@ export const experience: ExperienceItem[] = [
     description:
       "Frontend-utvikler og fotograf i byrå som leverer nettsider, løsninger og kampanjer til kunder i offentlig og privat sektor. Er med fra første kundemøte og følger prosjektene tett hele veien.",
     bullets: [
-      "Foreslår løsnings- og designretninger, og koder maler og skreddersydde funksjoner (bl.a. i WordPress) basert på kundens behov.",
-      "Estimerer og planlegger oppgaver sammen med prosjektleder, og følger opp krav og endringer underveis i prosjektene.",
-      "Bygger og vedlikeholder nettsider med JavaScript, PHP og moderne frontend-teknologier (HTML, CSS/SCSS). Bruker KI-verktøy aktivt for idéarbeid og effektivisering av utvikling.",
       {
-        text: "Utvikler og integrerer REST-API-er – både egne API-er som oppdaterer innhold og løsninger som henter data fra eksterne API-er og legger dem inn via cron-jobber.",
+        text: "Utvikler og integrerer REST APIs (både interne og eksterne API-integrasjoner).",
         buzzWord: {
-          term: "REST-API-er",
+          term: "REST APIs",
           explanation:
             "Utviklet bl.a. REST API for driftsmeldinger der kunden registrerer status ett sted, og løsningen automatisk oppdaterer synlig banner på forsiden. Dette sparer tid, fjerner behovet for å logge inn i WordPress ved hendelser og gjør det enklere å koble driftsrutiner inn i egne interne prosesser.",
         },
       },
+      "Foreslår løsnings- og designretninger, og koder maler og skreddersydde funksjoner (bl.a. i WordPress) basert på kundens behov.",
+      "Estimerer og planlegger oppgaver sammen med prosjektleder, og følger opp krav og endringer underveis i prosjektene.",
+      "Bygger og vedlikeholder nettsider med JavaScript, PHP, HTML og SCSS. Bruker KI-verktøy aktivt for idéarbeid og effektivisering av utvikling.",
       "Hjelper kunder med personvern og GDPR: utarbeider personvernerklæringer og setter opp cookie compliance (pluginer) på nettsidene deres.",
       "Planlegger og gjennomfører foto til prosjekter og kampanjer – sørger for at visuelt uttrykk og løsning henger sammen.",
     ],
@@ -127,19 +124,27 @@ export type SkillsGroup = {
 export const skillsGroups: SkillsGroup[] = [
   {
     label: "Frontend",
-    items: ["JavaScript / TypeScript", "React (lærer)", "Next.js (lærer)", "HTML", "CSS / SCSS", "jQuery"],
+    items: [
+      "JavaScript",
+      "TypeScript (personlige prosjekter)",
+      "React (personlige prosjekter)",
+      "Next.js (personlige prosjekter)",
+      "HTML",
+      "CSS / SCSS",
+      "jQuery",
+    ],
   },
   {
-    label: "Backend & CMS",
-    items: ["PHP", "WordPress", "MySQL"],
+    label: "Backend & integrasjon",
+    items: ["PHP", "REST API-er", "WordPress", "MySQL"],
+  },
+  {
+    label: "Verktøy",
+    items: ["Git", "Figma", "Adobe Photoshop", "MS Office", "KI (ivrig bruker)"],
   },
   {
     label: "Personvern & compliance",
     items: ["GDPR", "Personvernerklæringer", "Cookie compliance"],
-  },
-  {
-    label: "Design & verktøy",
-    items: ["Adobe Photoshop", "Figma", "MS Office", "KI (ivrig bruker)"],
   },
 ];
 

@@ -11,8 +11,8 @@ export function CVSection({ title, children, compact = false, accent = false }: 
       <h2
         className={
           accent
-            ? "text-xs font-semibold uppercase tracking-widest text-sky-600"
-            : "text-xs font-semibold uppercase tracking-widest text-slate-500"
+            ? "text-xs font-semibold uppercase tracking-widest text-accent"
+            : "text-xs font-semibold uppercase tracking-widest text-muted"
         }
       >
         {title}
