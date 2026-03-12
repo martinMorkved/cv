@@ -16,6 +16,7 @@ const headingSans = Sora({
 export const metadata: Metadata = {
   title: "Martin Gynther Mørkved",
   description: "Showcases Martin Gynther Mørkved's CV",
+  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({
