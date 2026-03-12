@@ -30,7 +30,7 @@ export default function Home() {
                 href="/projects"
                 className="inline-flex items-center justify-center rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-border hover:bg-surface/80"
               >
-                Prosjekter (kommer)
+                Prosjekter
               </a>
             </div>
           </section>
