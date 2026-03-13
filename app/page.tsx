@@ -15,7 +15,7 @@ export default function Home() {
               kode med sterke visuelle uttrykk.
             </p>
             <p className="max-w-prose text-sm leading-relaxed text-muted">
-              Her finner du CV, erfaring og etter hvert små prosjekter jeg
+              Her finner du CV, erfaring og små prosjekter jeg
               bygger for å utforske React, Next.js og andre verktøy jeg bruker
               i hverdagen.
             </p>
@@ -42,8 +42,7 @@ export default function Home() {
             <p className="text-sm leading-relaxed text-muted">
               Jobber i dag som frontend-utvikler i Doghouse i Trondheim, der
               jeg er med fra første kundemøte til ferdig levert løsning. Jeg
-              liker å finne enkle, forståelige grensesnitt selv når behovene er
-              litt kompliserte.
+              liker å finne enkle, forståelige grensesnitt selv når behovene kan være kompliserte.
             </p>
             <p className="text-sm leading-relaxed text-muted">
               På fritiden lærer jeg mer om React, Next.js og TypeScript gjennom

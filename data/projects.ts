@@ -37,4 +37,17 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    id: "hfdd",
+    title: "HFDD (Have Fun Don't Die) – treningsplanlegger",
+    tech: ["React", "TypeScript", "Vite", "Supabase", "Tailwind CSS"],
+    liveUrl: "https://www.hfdd.no/",
+    description:
+      "Personlig treningsapp der brukere kan bygge og følge treningsprogram. Appen har egen øvelsesbibliotek med muskelgrupper og beskrivelser, og brukeren kan lage program med ulike strukturer (ukevis, roterende, blokk, frekvens). Treningsøkter logges mot program eller som frie økter, med sett/reps, notater og vurdering, og historikk vises i egen side. Brukere kan foreslå nye øvelser som godkjennes av admin. Innlogging og roller (admin/standard/pro) håndteres via Supabase Auth, og data lagres i Supabase med typede tabeller for brukere, profiler, øvelser, program og treningsøkter.",
+    images: [
+      { src: "/images/refrances/hfdd/frontpage.png", alt: "Forsiden" },
+      { src: "/images/refrances/hfdd/second.png", alt: "Treningsprogram eller økter" },
+      { src: "/images/refrances/hfdd/third.png", alt: "Logge økt" },
+    ],
+  },
 ];

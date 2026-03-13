@@ -25,9 +25,5 @@ npm run dev
 
 Åpne `http://localhost:3000` i nettleseren.
 
-### Videre arbeid
 
-- Legge til prosjektside med små React/Next-prosjekter
-- Generere PDF-versjon av CV direkte fra innholdet på nettsiden
-- Finpusse design og navigasjon etter hvert som nye seksjoner kommer til
 
