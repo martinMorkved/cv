@@ -5,9 +5,9 @@ Målet er å vise hvem jeg er som **frontend-utvikler med fotobakgrunn**, og sam
 
 ### Sider
 
-- `/` – landing / introduksjon (kommer)
+- `/` – landing / introduksjon
 - `/cv` – CV-side med erfaring, utdanning og kompetanse
-- `/projects` – prosjekter og kode-eksempler (kommer)
+- `/projects` – prosjekter og kode-eksempler
 
 ### Teknologi
 

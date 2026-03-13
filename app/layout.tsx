@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${bodySans.variable} ${headingSans.variable} antialiased`}
+        suppressHydrationWarning
       >
         <TopNav />
         {children}

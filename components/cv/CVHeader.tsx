@@ -1,7 +1,6 @@
 type CVHeaderProps = {
   name: string;
   title: string;
-  birthDate: string;
   email: string;
   phone: string;
   website: string;
@@ -11,7 +10,6 @@ type CVHeaderProps = {
 export function CVHeader({
   name,
   title,
-  birthDate,
   email,
   phone,
   website,
@@ -24,7 +22,6 @@ export function CVHeader({
       </h1>
       <p className="mt-2 text-lg text-[var(--muted)]">{title}</p>
       <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm text-[var(--muted)]">
-        <li>Født: {birthDate}</li>
         <li>
           <a href={`mailto:${email}`} className="hover:underline">
             {email}

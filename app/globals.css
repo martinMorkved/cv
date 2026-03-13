@@ -37,3 +37,62 @@ h4 {
 .cv-page {
   background: var(--background);
 }
+
+/* PDF export: hide nav/icons, show actual contact (e-post, telefon, URL-er) */
+.cv-pdf-contact {
+  display: none !important;
+}
+.pdf-capture .cv-contact-nav,
+.pdf-capture .cv-contact-icons {
+  display: none !important;
+}
+.pdf-capture .cv-pdf-contact {
+  display: block !important;
+}
+
+/* PDF: portrait ikke dratt – fast aspect ratio, bilde skal ikke strekkes */
+.pdf-capture .cv-portrait-wrap {
+  aspect-ratio: 3 / 4 !important;
+  overflow: hidden;
+  flex-shrink: 0;
+  min-height: 0;
+}
+.pdf-capture .cv-portrait-img {
+  object-fit: contain !important;
+  object-position: top center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* PDF: "REST APIs" uten accent-farge – vises som vanlig tekst */
+.pdf-capture .cv-buzzword button {
+  border: none !important;
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  cursor: default !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+/* PDF: sidebar- og stillingtittel med systemfont (unngår rare fonter i export) */
+.pdf-capture .cv-sidebar-title,
+.pdf-capture .cv-role-title {
+  font-family: system-ui, sans-serif !important;
+}
+
+/* PDF: bruk mer av sidene – bredere layout, mindre marg, mer plass til tekst */
+.pdf-capture #cv-print-area {
+  width: 1100px !important;
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+}
+.pdf-capture .cv-layout {
+  max-width: none !important;
+  width: 100% !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+.pdf-capture .cv-layout > div:first-child {
+  padding-right: 1.5rem !important;
+}

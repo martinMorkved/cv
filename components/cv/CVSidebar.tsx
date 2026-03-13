@@ -1,6 +1,9 @@
 "use client";
 
+import { useCallback } from "react";
 import Image from "next/image";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import { Button } from "@/components/Button";
 import { cvSidebarAbout } from "@/data/cv";
 
@@ -23,16 +26,115 @@ export function CVSidebar({
   websiteUrl,
   portraitSrc,
 }: CVSidebarProps) {
+  const githubUrl = "https://github.com/martinMorkved";
+  const linkedinUrl = "https://www.linkedin.com/in/martin-m%C3%B8rkved-a759902b3/";
+
+  const handleDownloadPDF = useCallback(async () => {
+    const el = document.getElementById("cv-print-area");
+    if (!el) return;
+    let cleanedCSS = "";
+    const oklabRe = /color-mix\(in oklab[^)]*\)/g;
+    try {
+      for (const sheet of Array.from(document.styleSheets)) {
+        try {
+          if (sheet.cssRules) {
+            for (const rule of Array.from(sheet.cssRules)) {
+              cleanedCSS += rule.cssText;
+            }
+          }
+        } catch {
+          // CORS or other
+        }
+      }
+      cleanedCSS = cleanedCSS.replace(oklabRe, "#e2e8f0");
+    } catch {
+      // ignore
+    }
+
+    document.body.classList.add("pdf-capture");
+    await new Promise<void>((r) => requestAnimationFrame(() => r()));
+
+    try {
+      const canvas = await html2canvas(el, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        ignoreElements: (node) => node.getAttribute?.("data-pdf-ignore") === "true",
+        onclone: (clonedDoc) => {
+          clonedDoc.body.classList.add("pdf-capture");
+          const head = clonedDoc.head;
+          head.querySelectorAll("link[rel='stylesheet'], style").forEach((node) => node.remove());
+          const style = clonedDoc.createElement("style");
+          style.textContent = cleanedCSS || "/* no CSS */";
+          head.appendChild(style);
+          clonedDoc.querySelectorAll("style").forEach((styleEl) => {
+            if (styleEl.textContent?.includes("oklab")) {
+              styleEl.textContent = styleEl.textContent.replace(oklabRe, "#e2e8f0");
+            }
+          });
+          const root = clonedDoc.body.querySelector("#cv-print-area") ?? clonedDoc.body;
+          root.querySelectorAll(".cv-contact-nav, .cv-contact-icons").forEach((el) => {
+            (el as HTMLElement).style.display = "none";
+          });
+          root.querySelectorAll(".cv-pdf-contact").forEach((el) => {
+            (el as HTMLElement).style.display = "block";
+            (el as HTMLElement).classList.remove("hidden");
+          });
+          root.querySelectorAll(".cv-portrait-wrap").forEach((el) => {
+            const wrap = el as HTMLElement;
+            wrap.style.aspectRatio = "3 / 4";
+            wrap.style.overflow = "hidden";
+          });
+          root.querySelectorAll(".cv-portrait-img").forEach((el) => {
+            const img = el as HTMLElement;
+            img.style.objectFit = "contain";
+            img.style.objectPosition = "top center";
+          });
+        },
+      });
+
+      const imgWidth = 210;
+      const pageHeight = 297;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const doc = new jsPDF("p", "mm", "a4");
+      const pageBgRgb: [number, number, number] = [248, 250, 252];
+
+      const fillPageBg = () => {
+        doc.setFillColor(...pageBgRgb);
+        doc.rect(0, 0, imgWidth, pageHeight, "F");
+      };
+
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      fillPageBg();
+      doc.addImage(canvas.toDataURL("image/png"), "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        fillPageBg();
+        doc.addImage(canvas.toDataURL("image/png"), "PNG", 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      doc.save("Martin-Gynther-Morkved-CV.pdf");
+    } catch (e) {
+      console.error("PDF export failed:", e);
+    } finally {
+      document.body.classList.remove("pdf-capture");
+    }
+  }, []);
+
   return (
     <aside className="flex flex-col items-center lg:items-stretch w-full max-w-[300px] lg:max-w-none">
       <div className="relative w-full overflow-hidden rounded-2xl bg-surface shadow-lg ring-1 ring-border">
         {/* Larger image area */}
-        <div className="relative aspect-[3/4] w-full">
+        <div className="cv-portrait-wrap relative aspect-[3/4] w-full">
           <Image
             src={portraitSrc}
             alt={name}
             fill
-            className="object-cover object-top"
+            className="cv-portrait-img object-cover object-top"
             priority
             sizes="(max-width: 1024px) 300px, 320px"
           />
@@ -42,10 +144,10 @@ export function CVSidebar({
           <h1 className="text-lg font-bold tracking-tight text-surface">
             {name}
           </h1>
-          <p className="mt-0.5 text-xs font-medium uppercase tracking-wider text-surface/80">
+          <p className="cv-sidebar-title mt-0.5 text-xs font-medium uppercase tracking-wider text-surface/80">
             {title}
           </p>
-          <nav className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-surface/80 lg:justify-start">
+          <nav className="cv-contact-nav mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-surface/80 lg:justify-start">
             <a
               href={`mailto:${email}`}
               className="transition-colors hover:text-surface"
@@ -58,22 +160,18 @@ export function CVSidebar({
             >
               Telefon
             </a>
-            <a
-              href={
-                websiteUrl.startsWith("http")
-                  ? websiteUrl
-                  : `https://${websiteUrl}`
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-surface"
-            >
-              {website}
-            </a>
           </nav>
-          <div className="mt-3 flex justify-center gap-3 lg:justify-start">
+          <div className="cv-pdf-contact mt-3 hidden text-xs text-surface/80 break-all">
+            <p>{email}</p>
+            <p className="mt-1">{phone}</p>
+            <p className="mt-2 font-medium text-surface">GitHub:</p>
+            <p className="mt-0.5">{githubUrl}</p>
+            <p className="mt-2 font-medium text-surface">LinkedIn:</p>
+            <p className="mt-0.5">{linkedinUrl}</p>
+          </div>
+          <div className="cv-contact-icons mt-3 flex justify-center gap-3 lg:justify-start">
             <a
-              href="https://github.com/martinMorkved"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -91,7 +189,7 @@ export function CVSidebar({
               </svg>
             </a>
             <a
-              href="https://www.linkedin.com/in/martin-m%C3%B8rkved-a759902b3/"
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
@@ -113,7 +211,9 @@ export function CVSidebar({
       </div>
 
       <div className="mt-6 flex justify-center lg:justify-start">
-        <Button>Last ned CV</Button>
+        <Button type="button" onClick={handleDownloadPDF} data-pdf-ignore="true">
+          Last ned CV
+        </Button>
       </div>
 
       <p className="mt-4 text-xs leading-relaxed text-muted text-center lg:text-left">

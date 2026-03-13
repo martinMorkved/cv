@@ -15,8 +15,8 @@ import {
 
 export default function CV() {
   return (
-    <div className="cv-page min-h-screen">
-      <div className="mx-auto grid max-w-4xl grid-cols-1 gap-14 px-6 py-12 lg:grid-cols-[240px_1fr] lg:gap-20 lg:px-10 lg:py-16">
+    <div id="cv-print-area" className="cv-page min-h-screen">
+      <div className="cv-layout mx-auto grid max-w-4xl grid-cols-1 gap-14 px-6 py-12 lg:grid-cols-[240px_1fr] lg:gap-20 lg:px-10 lg:py-16">
         <div className="flex justify-center border-b border-border pb-12 lg:justify-start lg:border-b-0 lg:border-r lg:border-border lg:pr-14 lg:pb-0">
           <CVSidebar
             name={cvHeader.name}
@@ -46,7 +46,7 @@ export default function CV() {
             </div>
           </CVSection>
 
-          <CVSection title="Språk og datakunnskaper">
+          <CVSection title="Språk og datakunnskaper" spaciousTop>
             <CVSkills languages={languages} skillsGroups={skillsGroups} />
           </CVSection>
 

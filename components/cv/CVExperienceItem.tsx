@@ -31,7 +31,7 @@ export function CVExperienceItem({ item, emphasize = false }: CVExperienceItemPr
           <p className="text-xs font-medium uppercase tracking-wider text-muted">
             {item.period}
           </p>
-          <h3 className="mt-2 text-3xl font-bold tracking-tight text-foreground">
+          <h3 className="cv-role-title mt-2 text-3xl font-bold tracking-tight text-foreground">
             {item.role}
           </h3>
           <p className="mt-1 text-lg text-muted">{item.place}</p>

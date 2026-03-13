@@ -21,7 +21,6 @@ export type EducationItem = {
 export const cvHeader = {
   name: "Martin Gynther Mørkved",
   title: "Frontend-utvikler",
-  birthDate: "14.03.1991",
   email: "morkved.martin@gmail.com",
   phone: "+47 92 48 48 12",
   website: "doghouse.no",

@@ -23,7 +23,7 @@ export function BuzzWord({ children, explanation }: BuzzWordProps) {
   }, [open]);
 
   return (
-    <span ref={wrapperRef} className="relative inline">
+    <span ref={wrapperRef} className="cv-buzzword relative inline">
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
