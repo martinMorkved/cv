@@ -46,7 +46,14 @@ export default function CV() {
             </div>
           </CVSection>
 
-          <CVSection title="Språk og datakunnskaper" spaciousTop>
+          {/* Visible only during PDF export. Adjust height in globals.css */}
+          <div className="cv-pdf-spacer" aria-hidden />
+
+          <CVSection
+            title="Språk og datakunnskaper"
+            spaciousTop
+            sectionId="cv-languages"
+          >
             <CVSkills languages={languages} skillsGroups={skillsGroups} />
           </CVSection>
 

@@ -55,6 +55,7 @@ export function CVSidebar({
     await new Promise<void>((r) => requestAnimationFrame(() => r()));
 
     try {
+      let langOffsetCssPxFromClone: number | null = null;
       const canvas = await html2canvas(el, {
         scale: 2,
         useCORS: true,
@@ -90,33 +91,91 @@ export function CVSidebar({
             img.style.objectFit = "contain";
             img.style.objectPosition = "top center";
           });
+
+          // IMPORTANT: measure in cloned layout (the exact DOM html2canvas renders)
+          const clonedRoot = root as HTMLElement;
+          const clonedLang = clonedDoc.getElementById("cv-languages");
+          if (clonedLang) {
+            const rootRect = clonedRoot.getBoundingClientRect();
+            const langRect = clonedLang.getBoundingClientRect();
+            langOffsetCssPxFromClone = langRect.top - rootRect.top;
+            console.log("[PDF] clone langOffsetCssPx:", langOffsetCssPxFromClone);
+          } else {
+            console.warn("[PDF] clone did not find #cv-languages");
+          }
         },
       });
 
-      const imgWidth = 210;
-      const pageHeight = 297;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const scale = 2; // må matche html2canvas scale over
+      const langOffsetCssPx = langOffsetCssPxFromClone;
+
+      const imgWidth = 210; // mm
       const doc = new jsPDF("p", "mm", "a4");
+      const pageHeightMm = doc.internal.pageSize.getHeight();
       const pageBgRgb: [number, number, number] = [248, 250, 252];
 
       const fillPageBg = () => {
         doc.setFillColor(...pageBgRgb);
-        doc.rect(0, 0, imgWidth, pageHeight, "F");
+        doc.rect(0, 0, imgWidth, pageHeightMm, "F");
       };
 
-      let heightLeft = imgHeight;
-      let position = 0;
+      // mm per canvas-pixel (x og y er lik pga samme skalering)
+      const mmPerPx = imgWidth / canvas.width;
+      const sliceHeightPxDefault = Math.max(1, Math.round(pageHeightMm / mmPerPx));
 
-      fillPageBg();
-      doc.addImage(canvas.toDataURL("image/png"), "PNG", 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-      while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
-        doc.addPage();
-        fillPageBg();
-        doc.addImage(canvas.toDataURL("image/png"), "PNG", 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      const overlapPx = Math.round(2 * scale);
+      const pageSliceHeightPx = sliceHeightPxDefault;
+      const stepPx = Math.max(1, pageSliceHeightPx - overlapPx);
+
+      const pageStartsPx: number[] = [0];
+      while (
+        pageStartsPx[pageStartsPx.length - 1] + pageSliceHeightPx <
+        canvas.height
+      ) {
+        pageStartsPx.push(pageStartsPx[pageStartsPx.length - 1] + stepPx);
       }
+
+      pageStartsPx.forEach((pageStartPx, pageIndex) => {
+        const sliceHeightPxActual = Math.min(
+          pageSliceHeightPx,
+          canvas.height - pageStartPx,
+        );
+
+        // Avoid creating effectively empty tail pages.
+        if (sliceHeightPxActual <= overlapPx + 1) return;
+
+        if (pageIndex > 0) doc.addPage();
+        fillPageBg();
+
+        const sliceCanvas = document.createElement("canvas");
+        sliceCanvas.width = canvas.width;
+        sliceCanvas.height = sliceHeightPxActual;
+        const ctx = sliceCanvas.getContext("2d");
+        if (!ctx) return;
+
+        ctx.drawImage(
+          canvas,
+          0,
+          pageStartPx,
+          canvas.width,
+          sliceHeightPxActual,
+          0,
+          0,
+          canvas.width,
+          sliceHeightPxActual,
+        );
+
+        const sliceHeightMm = sliceHeightPxActual * mmPerPx;
+        doc.addImage(
+          sliceCanvas.toDataURL("image/png"),
+          "PNG",
+          0,
+          0,
+          imgWidth,
+          sliceHeightMm,
+        );
+      });
+
       doc.save("Martin-Gynther-Morkved-CV.pdf");
     } catch (e) {
       console.error("PDF export failed:", e);

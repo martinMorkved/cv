@@ -5,6 +5,7 @@ type CVSectionProps = {
   accent?: boolean;
   /** Extra space above section (e.g. when it lands on a new page in PDF) */
   spaciousTop?: boolean;
+  sectionId?: string;
 };
 
 export function CVSection({
@@ -13,12 +14,17 @@ export function CVSection({
   compact = false,
   accent = false,
   spaciousTop = false,
+  sectionId,
 }: CVSectionProps) {
 
-  const topClass = spaciousTop ? "mt-28" : compact ? "mt-10" : "mt-12";
+  const topClass = spaciousTop ? "mt-44" : compact ? "mt-10" : "mt-12";
+  // Når seksjonen havner øverst på en ny PDF-side (spaciousTop),
+  // vil vi at overskrift og første innhold skal sitte tettere sammen
+  // slik at de ikke blir delt over to A4-skiver.
+  const childrenTopClass = compact ? "mt-4" : spaciousTop ? "mt-2" : "mt-8";
 
   return (
-    <section className={topClass}>
+    <section id={sectionId} className={topClass}>
       <h2
         className={
           accent
@@ -28,7 +34,7 @@ export function CVSection({
       >
         {title}
       </h2>
-      <div className={compact ? "mt-4" : "mt-8"}>{children}</div>
+      <div className={childrenTopClass}>{children}</div>
     </section>
   );
 }
