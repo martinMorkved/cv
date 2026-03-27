@@ -56,8 +56,9 @@ export function CVSidebar({
 
     try {
       let langOffsetCssPxFromClone: number | null = null;
+      const renderScale = 1.35;
       const canvas = await html2canvas(el, {
-        scale: 2,
+        scale: renderScale,
         useCORS: true,
         logging: false,
         ignoreElements: (node) => node.getAttribute?.("data-pdf-ignore") === "true",
@@ -106,7 +107,7 @@ export function CVSidebar({
         },
       });
 
-      const scale = 2; // må matche html2canvas scale over
+      const scale = renderScale; // må matche html2canvas scale over
       const langOffsetCssPx = langOffsetCssPxFromClone;
 
       const imgWidth = 210; // mm
@@ -166,14 +167,8 @@ export function CVSidebar({
         );
 
         const sliceHeightMm = sliceHeightPxActual * mmPerPx;
-        doc.addImage(
-          sliceCanvas.toDataURL("image/png"),
-          "PNG",
-          0,
-          0,
-          imgWidth,
-          sliceHeightMm,
-        );
+        const jpgData = sliceCanvas.toDataURL("image/jpeg", 0.72);
+        doc.addImage(jpgData, "JPEG", 0, 0, imgWidth, sliceHeightMm, undefined, "FAST");
       });
 
       doc.save("Martin-Gynther-Morkved-CV.pdf");
