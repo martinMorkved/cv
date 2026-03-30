@@ -28,7 +28,7 @@ export const cvHeader = {
 };
 
 export const cvGoal =
-  "Frontend-utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne prosjekter. Jobber i små team hvor jeg følger prosjekter fra kundemøte til ferdig løsning. Lærer React, Next.js og TypeScript gjennom egne prosjekter.";
+  "Frontend-utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne prosjekter. Følger prosjekter tett fra kundemøte til ferdig løsning. Lærer React, Next.js og TypeScript gjennom egne prosjekter.";
 
 export const experience: ExperienceItem[] = [
   {
@@ -50,11 +50,12 @@ export const experience: ExperienceItem[] = [
       "Estimerer og planlegger oppgaver sammen med prosjektleder, og følger opp krav og endringer underveis i prosjektene.",
       "Bygger og vedlikeholder nettsider med JavaScript, PHP, HTML og SCSS. Bruker KI-verktøy aktivt for idéarbeid og effektivisering av utvikling.",
       "Hjelper kunder med personvern og GDPR: utarbeider personvernerklæringer og setter opp cookie compliance (pluginer) på nettsidene deres.",
+      "Innarbeider universell utforming (UU) i leveranser: semantisk HTML, meningsfull struktur og løsninger som fungerer med tastatur og vanlige hjelpemidler, særlig der offentlig sektor stiller krav.",
       "Planlegger og gjennomfører foto til prosjekter og kampanjer – sørger for at visuelt uttrykk og løsning henger sammen.",
     ],
   },
   {
-    period: "2011–i dag",
+    period: "2011–2021",
     role: "Fotograf",
     place: "MGMPHOTOS",
     description:
@@ -148,6 +149,6 @@ export const skillsGroups: SkillsGroup[] = [
 ];
 
 export const cvSidebarAbout =
-  "Bor i Trondheim. Jobber som frontend-utvikler i Doghouse, og lærer React/Next.js og TypeScript gjennom egne småprosjekter.";
+  "Utdanning innen IT og bakgrunn som fotograf. Jeg tar ofte det visuelle blikket med inn i samspillet mellom innhold, design og kode. Egne prosjekter deler jeg på GitHub og publiserer ofte med Vercel.";
 
 export const referencesNote = "Referanser oppgis ved forespørsel.";
