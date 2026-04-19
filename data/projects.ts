@@ -50,4 +50,27 @@ export const projects: Project[] = [
       { src: "/images/refrances/hfdd/third.png", alt: "Logge økt" },
     ],
   },
+  {
+    id: "wow-vault-tracker",
+    title: "WoW Vault Tracker – Mythic+ vault på ett sted",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "NextAuth",
+      "Prisma",
+      "PostgreSQL",
+      "Raider.io API",
+    ],
+    description:
+      "Personlig verktøy for World of Warcraft der innloggede brukere legger inn egne karakterer (realm og navn for EU eller US/OCE/LA). Appen henter Mythic+-data fra Raider.io og viser hvor mange +10- eller høyere-runder som telles mot ukens Great Vault (1 / 4 / 8), med tydelig fremdrift og når uken resetter. Karakterer lagres per bruker i PostgreSQL (Neon) med Prisma, profil kan caches for raskere lasting, og brukeren kan oppdatere alle karakterer eller fjerne dem etter behov.",
+    liveUrl: "https://wow-vault-tracker.vercel.app/",
+    repoUrl: "https://github.com/martinMorkved/wow_vault_tracker",
+    images: [
+      {
+        src: "/images/refrances/vault-tracker/vault-tracker.png",
+        alt: "WoW Vault Tracker med Mythic+ og Great Vault-fremdrift",
+      },
+    ],
+  },
 ];
