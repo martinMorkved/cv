@@ -20,7 +20,7 @@ export type EducationItem = {
 
 export const cvHeader = {
   name: "Martin Gynther Mørkved",
-  title: "Frontend-utvikler",
+  title: "Utvikler",
   email: "morkved.martin@gmail.com",
   phone: "+47 92 48 48 12",
   website: "doghouse.no",
@@ -28,15 +28,15 @@ export const cvHeader = {
 };
 
 export const cvGoal =
-  "Frontend-utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne prosjekter. Følger prosjekter tett fra kundemøte til ferdig løsning. Lærer React, Next.js og TypeScript gjennom egne prosjekter.";
+  "Utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne prosjekter. Følger prosjekter tett fra kundemøte til ferdig løsning. Lærer React, Next.js og TypeScript gjennom egne prosjekter.";
 
 export const experience: ExperienceItem[] = [
   {
     period: "2021–i dag",
-    role: "Frontend-utvikler og fotograf",
+    role: "Utvikler og fotograf",
     place: "Doghouse AS",
     description:
-      "Frontend-utvikler og fotograf i byrå som leverer nettsider, løsninger og kampanjer til kunder i offentlig og privat sektor. Er med fra første kundemøte og følger prosjektene tett hele veien.",
+      "Utvikler og fotograf i byrå som leverer nettsider, løsninger og kampanjer til kunder i offentlig og privat sektor. Er med fra første kundemøte og følger prosjektene tett hele veien.",
     bullets: [
       {
         text: "Utvikler og integrerer REST APIs (både interne og eksterne API-integrasjoner).",

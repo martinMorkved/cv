@@ -1,7 +1,7 @@
 ## Martin Mørkved – CV & portfolio
 
 Dette repoet inneholder min personlige CV/nettside, bygget med [Next.js](https://nextjs.org), TypeScript og Tailwind CSS.  
-Målet er å vise hvem jeg er som **frontend-utvikler med fotobakgrunn**, og samle små prosjekter jeg jobber med på fritiden.
+Målet er å vise hvem jeg er som **utvikler med fotobakgrunn**, og samle små prosjekter jeg jobber med på fritiden.
 
 ### Sider
 

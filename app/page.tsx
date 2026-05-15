@@ -11,7 +11,7 @@ export default function Home() {
               Martin Gynther Mørkved
             </h1>
             <p className="text-base font-medium text-foreground">
-              Frontend-utvikler med fotobakgrunn, som liker å kombinere ryddig
+              Utvikler med fotobakgrunn, som liker å kombinere ryddig
               kode med sterke visuelle uttrykk.
             </p>
             <p className="max-w-prose text-sm leading-relaxed text-muted">
@@ -40,7 +40,7 @@ export default function Home() {
               Kort om meg
             </h2>
             <p className="text-sm leading-relaxed text-muted">
-              Jobber i dag som frontend-utvikler i Doghouse i Trondheim, der
+              Jobber i dag som utvikler i Doghouse i Trondheim, der
               jeg er med fra første kundemøte til ferdig levert løsning. Jeg
               liker å finne enkle, forståelige grensesnitt selv når behovene kan være kompliserte.
             </p>
