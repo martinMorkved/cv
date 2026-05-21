@@ -28,30 +28,30 @@ export const cvHeader = {
 };
 
 export const cvGoal =
-  "Utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne prosjekter. Følger prosjekter tett fra kundemøte til ferdig løsning. Lærer React, Next.js og TypeScript gjennom egne prosjekter.";
+  "Utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne løsninger. Følger prosjekter tett fra kundemøte til ferdig løsning. Bygger egne prosjekter med React, Next.js og TypeScript for å videreutvikle frontend-kompetanse.";
 
 export const experience: ExperienceItem[] = [
   {
     period: "2021–i dag",
-    role: "Utvikler og fotograf",
+    role: "Utvikler",
     place: "Doghouse AS",
     description:
-      "Utvikler og fotograf i byrå som leverer nettsider, løsninger og kampanjer til kunder i offentlig og privat sektor. Er med fra første kundemøte og følger prosjektene tett hele veien.",
+      "Utvikler i byrå som leverer webbaserte løsninger for kunder i offentlig og privat sektor. Jobber med utvikling, videreutvikling og vedlikehold av kundeløsninger, og følger prosjekter fra behovskartlegging til ferdig leveranse.",
     bullets: [
       {
-        text: "Utvikler og integrerer REST APIs (både interne og eksterne API-integrasjoner).",
+        text: "Utvikler og integrerer REST API-er mot interne og eksterne systemer.",
         buzzWord: {
-          term: "REST APIs",
+          term: "REST API-er",
           explanation:
             "Utviklet bl.a. REST API for driftsmeldinger der kunden registrerer status ett sted, og løsningen automatisk oppdaterer synlig banner på forsiden. Dette sparer tid, fjerner behovet for å logge inn i WordPress ved hendelser og gjør det enklere å koble driftsrutiner inn i egne interne prosesser.",
         },
       },
-      "Foreslår løsnings- og designretninger, og koder maler og skreddersydde funksjoner (bl.a. i WordPress) basert på kundens behov.",
+      "Bygger og vedlikeholder webbaserte løsninger med JavaScript, PHP, HTML og SCSS",
+      "Videreutvikler funksjonalitet og skreddersydde løsninger basert på kundebehov.",
       "Estimerer og planlegger oppgaver sammen med prosjektleder, og følger opp krav og endringer underveis i prosjektene.",
-      "Bygger og vedlikeholder nettsider med JavaScript, PHP, HTML og SCSS. Bruker KI-verktøy aktivt for idéarbeid og effektivisering av utvikling.",
-      "Hjelper kunder med personvern og GDPR: utarbeider personvernerklæringer og setter opp cookie compliance (pluginer) på nettsidene deres.",
-      "Innarbeider universell utforming (UU) i leveranser: semantisk HTML, meningsfull struktur og løsninger som fungerer med tastatur og vanlige hjelpemidler, særlig der offentlig sektor stiller krav.",
-      "Planlegger og gjennomfører foto til prosjekter og kampanjer – sørger for at visuelt uttrykk og løsning henger sammen.",
+      "Bidrar med løsningsforslag og tekniske vurderinger i prosjekter.",
+      "Arbeider med universell utforming og GDPR-relaterte krav i leveranser.",
+      "Planlegger og gjennomfører foto til prosjekter og kampanjer ved behov.",
     ],
   },
   {
@@ -126,9 +126,9 @@ export const skillsGroups: SkillsGroup[] = [
     label: "Frontend",
     items: [
       "JavaScript",
-      "TypeScript (personlige prosjekter)",
-      "React (personlige prosjekter)",
-      "Next.js (personlige prosjekter)",
+      "TypeScript",
+      "React",
+      "Next.js",
       "HTML",
       "CSS / SCSS",
       "jQuery",
@@ -140,7 +140,7 @@ export const skillsGroups: SkillsGroup[] = [
   },
   {
     label: "Verktøy",
-    items: ["Git", "Figma", "Adobe Photoshop", "MS Office", "KI (ivrig bruker)"],
+    items: ["Git", "Figma", "Adobe Photoshop", "MS Office", "AI-assisterte utviklingsverktøy"],
   },
   {
     label: "Personvern & compliance",
@@ -149,6 +149,6 @@ export const skillsGroups: SkillsGroup[] = [
 ];
 
 export const cvSidebarAbout =
-  "Utdanning innen IT og bakgrunn som fotograf. Jeg tar ofte det visuelle blikket med inn i samspillet mellom innhold, design og kode. Egne prosjekter deler jeg på GitHub og publiserer ofte med Vercel.";
+  "Utvikler med erfaring fra webutvikling, API-integrasjoner og kundedrevne løsninger. Bakgrunn som fotograf gir et ekstra fokus på struktur, brukeropplevelse og visuell kommunikasjon i digitale produkter. Egne prosjekter deler jeg på GitHub og publiserer ofte med Vercel.";
 
 export const referencesNote = "Referanser oppgis ved forespørsel.";

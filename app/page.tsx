@@ -11,13 +11,12 @@ export default function Home() {
               Martin Gynther Mørkved
             </h1>
             <p className="text-base font-medium text-foreground">
-              Utvikler med fotobakgrunn, som liker å kombinere ryddig
-              kode med sterke visuelle uttrykk.
+              Utvikler med erfaring fra webutvikling, API-integrasjoner og
+              kundedrevne løsninger.
             </p>
             <p className="max-w-prose text-sm leading-relaxed text-muted">
-              Her finner du CV, erfaring og små prosjekter jeg
-              bygger for å utforske React, Next.js og andre verktøy jeg bruker
-              i hverdagen.
+              Her finner du CV, erfaring og egne prosjekter bygget med moderne
+              frontend-teknologi som React, Next.js og TypeScript.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
@@ -40,14 +39,16 @@ export default function Home() {
               Kort om meg
             </h2>
             <p className="text-sm leading-relaxed text-muted">
-              Jobber i dag som utvikler i Doghouse i Trondheim, der
-              jeg er med fra første kundemøte til ferdig levert løsning. Jeg
-              liker å finne enkle, forståelige grensesnitt selv når behovene kan være kompliserte.
+              Jeg jobber i dag som utvikler i Doghouse i Trondheim, der jeg
+              følger prosjekter fra kundemøte til ferdig løsning. Arbeidet
+              består blant annet av webutvikling, API-integrasjoner og
+              videreutvikling av eksisterende løsninger for kunder i offentlig
+              og privat sektor.
             </p>
             <p className="text-sm leading-relaxed text-muted">
-              På fritiden lærer jeg mer om React, Next.js og TypeScript gjennom
-              egne småprosjekter, og bruker KI-verktøy for å teste idéer og
-              jobbe raskere.
+              Ved siden av jobb bygger jeg egne prosjekter for å videreutvikle
+              kompetansen min innen moderne frontend-utvikling og
+              brukeropplevelse.
             </p>
           </section>
         </div>
