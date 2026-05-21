@@ -10,11 +10,10 @@ export default function ProjectsPage() {
             Prosjekter
           </p>
           <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            Småprosjekter & øving
+            Egne prosjekter
           </h1>
           <p className="max-w-prose text-sm leading-relaxed text-muted">
-            Her samler jeg små prosjekter jeg bygger for å lære mer om React,
-            Next.js, TypeScript og API-integrasjoner.
+            Her samler jeg personlige utviklingsprosjekter bygget med React, Next.js, TypeScript og API-integrasjoner. Prosjektene brukes til å utforske moderne frontend-utvikling, autentisering, databaser og API-drevet funksjonalitet.
           </p>
         </header>
 

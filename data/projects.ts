@@ -15,35 +15,12 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "driftstatus-rest-api",
-    title: "Driftstatus – systemstatus via REST API",
-    tech: ["Next.js", "TypeScript", "REST API"],
-    description:
-      "Idé hentet fra et konkret kundeprosjekt der vi opprinnelig bygde en lignende løsning i PHP for WordPress. Her har jeg gjenskapt samme konsept i Next.js: en enkel driftstatus-løsning der status oppdateres via et REST API. Ved vedlikehold eller feil vises et tydelig varselbanner øverst på siden med lenke til en egen driftstatus-side som viser driftsmelding, forventet nedetid og tidspunkt for siste oppdatering.",
-    liveUrl: "https://rest-api-delta-mocha.vercel.app/",
-    repoUrl: "https://github.com/martinMorkved/rest-api",
-    images: [
-      {
-        src: "/images/refrances/rest-api/front-page.png",
-        alt: "Forsiden med driftstatus-banner",
-      },
-      {
-        src: "/images/refrances/rest-api/page.png",
-        alt: "Driftstatus-side med aktiv melding",
-      },
-      {
-        src: "/images/refrances/rest-api/page-error.png",
-        alt: "Driftstatus-side med feilmelding",
-      },
-    ],
-  },
-  {
     id: "hfdd",
     title: "HFDD (Have Fun Don't Die) – treningsplanlegger",
     tech: ["React", "TypeScript", "Vite", "Supabase", "Tailwind CSS"],
     liveUrl: "https://www.hfdd.no/",
     description:
-      "Personlig treningsapp der brukere kan bygge og følge treningsprogram. Appen har egen øvelsesbibliotek med muskelgrupper og beskrivelser, og brukeren kan lage program med ulike strukturer (ukevis, roterende, blokk, frekvens). Treningsøkter logges mot program eller som frie økter, med sett/reps, notater og vurdering, og historikk vises i egen side. Brukere kan foreslå nye øvelser som godkjennes av admin. Innlogging og roller (admin/standard/pro) håndteres via Supabase Auth, og data lagres i Supabase med typede tabeller for brukere, profiler, øvelser, program og treningsøkter.",
+      "Treningsapplikasjon bygget i React og TypeScript der brukere kan opprette, følge og loggføre egne treningsprogrammer. Appen har eget øvelsesbibliotek med muskelgrupper og beskrivelser, og brukeren kan lage program med ulike strukturer (ukevis, roterende, blokk, frekvens). Treningsøkter logges mot program eller som frie økter, med sett/reps, notater og vurdering, og historikk vises i egen side. Brukere kan foreslå nye øvelser som godkjennes av admin. Applikasjonen bruker rollebasert autentisering via Supabase Auth og lagrer data i Supabase med typede relasjoner for brukere, øvelser, programmer og treningsøkter.",
     images: [
       { src: "/images/refrances/hfdd/frontpage.png", alt: "Forsiden" },
       { src: "/images/refrances/hfdd/second.png", alt: "Treningsprogram eller økter" },
@@ -63,13 +40,36 @@ export const projects: Project[] = [
       "Raider.io API",
     ],
     description:
-      "Personlig verktøy for World of Warcraft der innloggede brukere legger inn egne karakterer (realm og navn for EU eller US/OCE/LA). Appen henter Mythic+-data fra Raider.io og viser hvor mange +10- eller høyere-runder som telles mot ukens Great Vault (1 / 4 / 8), med tydelig fremdrift og når uken resetter. Karakterer lagres per bruker i PostgreSQL (Neon) med Prisma, profil kan caches for raskere lasting, og brukeren kan oppdatere alle karakterer eller fjerne dem etter behov.",
+      "Webapplikasjon for sporing av Mythic+-fremdrift i World of Warcraft, bygget med Next.js, Prisma og PostgreSQL. Brukere logger inn med Discord via NextAuth, legger til egne karakterer og henter Mythic+-data fra Raider.io API-et. Appen viser hvor mange +10- eller høyere-runder som telles mot ukens Great Vault (1 / 4 / 8), med tydelig fremdrift og når uken resetter. Karakterer lagres per bruker med Prisma, profil kan caches for raskere lasting, og brukeren kan oppdatere alle karakterer eller fjerne dem etter behov.",
     liveUrl: "https://wow-vault-tracker.vercel.app/",
     repoUrl: "https://github.com/martinMorkved/wow_vault_tracker",
     images: [
       {
         src: "/images/refrances/vault-tracker/vault-tracker.png",
         alt: "WoW Vault Tracker med Mythic+ og Great Vault-fremdrift",
+      },
+    ],
+  },
+  {
+    id: "driftstatus-rest-api",
+    title: "Driftstatus – systemstatus via REST API",
+    tech: ["Next.js", "TypeScript", "REST API"],
+    description:
+      "Basert på et tidligere kundeprosjekt utviklet jeg en egen versjon av en driftstatus-løsning i Next.js med API-basert statusoppdatering og varsling av driftsmeldinger. Ved vedlikehold eller feil vises et tydelig varselbanner øverst på siden med lenke til en egen driftstatus-side som viser driftsmelding, forventet nedetid og tidspunkt for siste oppdatering.",
+    liveUrl: "https://rest-api-delta-mocha.vercel.app/",
+    repoUrl: "https://github.com/martinMorkved/rest-api",
+    images: [
+      {
+        src: "/images/refrances/rest-api/front-page.png",
+        alt: "Forsiden med driftstatus-banner",
+      },
+      {
+        src: "/images/refrances/rest-api/page.png",
+        alt: "Driftstatus-side med aktiv melding",
+      },
+      {
+        src: "/images/refrances/rest-api/page-error.png",
+        alt: "Driftstatus-side med feilmelding",
       },
     ],
   },
