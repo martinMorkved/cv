@@ -69,21 +69,6 @@ h4 {
   display: block !important;
 }
 
-/* PDF: portrait ikke dratt – fast aspect ratio, bilde skal ikke strekkes */
-.pdf-capture .cv-portrait-wrap {
-  aspect-ratio: 3 / 4 !important;
-  overflow: hidden;
-  flex-shrink: 0;
-  min-height: 0;
-}
-
-.pdf-capture .cv-portrait-img {
-  object-fit: contain !important;
-  object-position: top center !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
 /* PDF: "REST APIs" uten accent-farge – vises som vanlig tekst */
 .pdf-capture .cv-buzzword button {
   border: none !important;

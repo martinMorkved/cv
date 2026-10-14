@@ -25,7 +25,6 @@ export default function CV() {
             phone={cvHeader.phone}
             website={cvHeader.website}
             websiteUrl={cvHeader.websiteUrl}
-            portraitSrc="/images/portrait.png"
           />
         </div>
 

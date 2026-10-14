@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback } from "react";
-import Image from "next/image";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { Button } from "@/components/Button";
@@ -14,7 +13,6 @@ type CVSidebarProps = {
   phone: string;
   website: string;
   websiteUrl: string;
-  portraitSrc: string;
 };
 
 export function CVSidebar({
@@ -24,7 +22,6 @@ export function CVSidebar({
   phone,
   website,
   websiteUrl,
-  portraitSrc,
 }: CVSidebarProps) {
   const githubUrl = "https://github.com/martinMorkved";
   const linkedinUrl = "https://www.linkedin.com/in/martin-m%C3%B8rkved-a759902b3/";
@@ -81,16 +78,6 @@ export function CVSidebar({
           root.querySelectorAll(".cv-pdf-contact").forEach((el) => {
             (el as HTMLElement).style.display = "block";
             (el as HTMLElement).classList.remove("hidden");
-          });
-          root.querySelectorAll(".cv-portrait-wrap").forEach((el) => {
-            const wrap = el as HTMLElement;
-            wrap.style.aspectRatio = "3 / 4";
-            wrap.style.overflow = "hidden";
-          });
-          root.querySelectorAll(".cv-portrait-img").forEach((el) => {
-            const img = el as HTMLElement;
-            img.style.objectFit = "contain";
-            img.style.objectPosition = "top center";
           });
 
           // IMPORTANT: measure in cloned layout (the exact DOM html2canvas renders)
@@ -182,18 +169,7 @@ export function CVSidebar({
   return (
     <aside className="flex flex-col items-center lg:items-stretch w-full max-w-[300px] lg:max-w-none">
       <div className="relative w-full overflow-hidden rounded-2xl bg-surface shadow-lg ring-1 ring-border">
-        {/* Larger image area */}
-        <div className="cv-portrait-wrap relative aspect-[3/4] w-full">
-          <Image
-            src={portraitSrc}
-            alt={name}
-            fill
-            className="cv-portrait-img object-cover object-top"
-            priority
-            sizes="(max-width: 1024px) 300px, 320px"
-          />
-        </div>
-        {/* Bar at bottom: name, title, contact */}
+        {/* Name, title, contact */}
         <div className="bg-foreground px-5 py-4 text-center lg:text-left">
           <h1 className="text-lg font-bold tracking-tight text-surface">
             {name}
