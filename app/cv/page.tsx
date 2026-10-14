@@ -45,9 +45,6 @@ export default function CV() {
             </div>
           </CVSection>
 
-          {/* Visible only during PDF export. Adjust height in globals.css */}
-          <div className="cv-pdf-spacer" aria-hidden />
-
           <CVSection
             title="Språk og datakunnskaper"
             spaciousTop

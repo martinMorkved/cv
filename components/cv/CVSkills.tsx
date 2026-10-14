@@ -14,7 +14,7 @@ export function CVSkills({ languages, skillsGroups }: CVSkillsProps) {
       </p>
       <div className="space-y-4">
         {skillsGroups.map((group) => (
-          <div key={group.label}>
+          <div key={group.label} className="cv-skills-group">
             <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted">
               {group.label}
             </p>

@@ -11,7 +11,7 @@ export function TopNav() {
   }
 
   return (
-    <header className="bg-background py-3">
+    <header className="bg-background py-3 print:hidden">
       <nav className="mx-auto flex max-w-4xl items-center justify-center gap-6 px-6 text-sm text-muted lg:px-10">
         <Link
           href="/"

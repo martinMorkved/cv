@@ -40,66 +40,101 @@ h4 {
   background: var(--background);
 }
 
-/* PDF-only spacer placed above "Språk og datakunnskaper".
-   Tune this value to push the section further down in PDF. */
-:root {
-  --cv-pdf-spacer-height: 40px;
-}
+/* PDF via nettleserens utskrift ("Last ned CV" kaller window.print()).
+   Ekte tekst i PDF-en – kan markeres, kopieres og søkes i. */
+@media print {
+  /* Margin 0 fjerner Chromes dato/URL i topp- og bunntekst;
+     margen legges i stedet på innholdet under (gjentas på hver side) */
+  @page {
+    size: A4;
+    margin: 0;
+  }
 
-.cv-pdf-spacer {
-  display: none;
-}
+  /* Tailwind bruker rem, så dette skalerer tekst og avstander samlet */
+  html {
+    font-size: 12px;
+  }
 
-.pdf-capture .cv-pdf-spacer {
-  display: block !important;
-  height: var(--cv-pdf-spacer-height);
-}
+  html,
+  body,
+  .cv-page {
+    background: #fff;
+  }
 
-/* PDF export: hide nav/icons, show actual contact (e-post, telefon, URL-er) */
-.cv-pdf-contact {
-  display: none !important;
-}
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 
-.pdf-capture .cv-contact-nav,
-.pdf-capture .cv-contact-icons {
-  display: none !important;
-}
+  .cv-page {
+    min-height: 0;
+    padding: 14mm 12mm;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
 
-.pdf-capture .cv-pdf-contact {
-  display: block !important;
-}
+  /* Alltid to kolonner, uavhengig av papirbredde */
+  .cv-layout {
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 2rem;
+    max-width: none;
+    padding: 0;
+  }
 
-/* PDF: "REST APIs" uten accent-farge – vises som vanlig tekst */
-.pdf-capture .cv-buzzword button {
-  border: none !important;
-  background: transparent !important;
-  color: inherit !important;
-  padding: 0 !important;
-  cursor: default !important;
-  font-size: inherit !important;
-  font-weight: inherit !important;
-}
+  .cv-layout > div:first-child {
+    justify-content: flex-start;
+    border-bottom: 0;
+    border-right: 1px solid var(--border);
+    padding: 0 1.5rem 0 0;
+  }
 
-/* PDF: sidebar- og stillingtittel med systemfont (unngår rare fonter i export) */
-.pdf-capture .cv-sidebar-title,
-.pdf-capture .cv-role-title {
-  font-family: system-ui, sans-serif !important;
-}
+  .cv-sidebar {
+    max-width: none;
+    align-items: stretch;
+  }
 
-/* PDF: bruk mer av sidene – bredere layout, mindre marg, mer plass til tekst */
-.pdf-capture #cv-print-area {
-  width: 1100px !important;
-  max-width: 1100px !important;
-  margin: 0 auto !important;
-}
+  .cv-sidebar-card,
+  .cv-sidebar-about {
+    text-align: left;
+  }
 
-.pdf-capture .cv-layout {
-  max-width: none !important;
-  width: 100% !important;
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
-}
+  /* Skygger ser grumsete ut på papir; ring-rammer beholdes */
+  .cv-page * {
+    --tw-shadow: 0 0 #0000;
+  }
 
-.pdf-capture .cv-layout>div:first-child {
-  padding-right: 1.5rem !important;
+  /* Den store toppmargen er laget for skjerm */
+  .cv-section-spacious {
+    margin-top: 3rem;
+  }
+
+  /* Ikke del en jobb, utdanning eller ferdighetsgruppe over to sider */
+  .cv-experience-item,
+  .cv-education-item,
+  .cv-skills-group {
+    break-inside: avoid;
+  }
+
+  .cv-page h2,
+  .cv-page h3 {
+    break-after: avoid;
+  }
+
+  /* "REST APIs" o.l. vises som vanlig tekst i riktig leserekkefølge */
+  .cv-buzzword {
+    position: static;
+  }
+
+  .cv-buzzword button {
+    border: none;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  .cv-buzzword [role="tooltip"] {
+    display: none;
+  }
 }

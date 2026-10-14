@@ -1,8 +1,6 @@
 "use client";
 
 import { useCallback } from "react";
-import html2canvas from "html2canvas";
-import { jsPDF } from "jspdf";
 import { Button } from "@/components/Button";
 import { cvSidebarAbout } from "@/data/cv";
 
@@ -26,158 +24,34 @@ export function CVSidebar({
   const githubUrl = "https://github.com/martinMorkved";
   const linkedinUrl = "https://www.linkedin.com/in/martin-m%C3%B8rkved-a759902b3/";
 
-  const handleDownloadPDF = useCallback(async () => {
-    const el = document.getElementById("cv-print-area");
-    if (!el) return;
-    let cleanedCSS = "";
-    const oklabRe = /color-mix\(in oklab[^)]*\)/g;
-    try {
-      for (const sheet of Array.from(document.styleSheets)) {
-        try {
-          if (sheet.cssRules) {
-            for (const rule of Array.from(sheet.cssRules)) {
-              cleanedCSS += rule.cssText;
-            }
-          }
-        } catch {
-          // CORS or other
-        }
-      }
-      cleanedCSS = cleanedCSS.replace(oklabRe, "#e2e8f0");
-    } catch {
-      // ignore
-    }
-
-    document.body.classList.add("pdf-capture");
-    await new Promise<void>((r) => requestAnimationFrame(() => r()));
-
-    try {
-      let langOffsetCssPxFromClone: number | null = null;
-      const renderScale = 1.35;
-      const canvas = await html2canvas(el, {
-        scale: renderScale,
-        useCORS: true,
-        logging: false,
-        ignoreElements: (node) => node.getAttribute?.("data-pdf-ignore") === "true",
-        onclone: (clonedDoc) => {
-          clonedDoc.body.classList.add("pdf-capture");
-          const head = clonedDoc.head;
-          head.querySelectorAll("link[rel='stylesheet'], style").forEach((node) => node.remove());
-          const style = clonedDoc.createElement("style");
-          style.textContent = cleanedCSS || "/* no CSS */";
-          head.appendChild(style);
-          clonedDoc.querySelectorAll("style").forEach((styleEl) => {
-            if (styleEl.textContent?.includes("oklab")) {
-              styleEl.textContent = styleEl.textContent.replace(oklabRe, "#e2e8f0");
-            }
-          });
-          const root = clonedDoc.body.querySelector("#cv-print-area") ?? clonedDoc.body;
-          root.querySelectorAll(".cv-contact-nav, .cv-contact-icons").forEach((el) => {
-            (el as HTMLElement).style.display = "none";
-          });
-          root.querySelectorAll(".cv-pdf-contact").forEach((el) => {
-            (el as HTMLElement).style.display = "block";
-            (el as HTMLElement).classList.remove("hidden");
-          });
-
-          // IMPORTANT: measure in cloned layout (the exact DOM html2canvas renders)
-          const clonedRoot = root as HTMLElement;
-          const clonedLang = clonedDoc.getElementById("cv-languages");
-          if (clonedLang) {
-            const rootRect = clonedRoot.getBoundingClientRect();
-            const langRect = clonedLang.getBoundingClientRect();
-            langOffsetCssPxFromClone = langRect.top - rootRect.top;
-            console.log("[PDF] clone langOffsetCssPx:", langOffsetCssPxFromClone);
-          } else {
-            console.warn("[PDF] clone did not find #cv-languages");
-          }
-        },
-      });
-
-      const scale = renderScale; // må matche html2canvas scale over
-      const langOffsetCssPx = langOffsetCssPxFromClone;
-
-      const imgWidth = 210; // mm
-      const doc = new jsPDF("p", "mm", "a4");
-      const pageHeightMm = doc.internal.pageSize.getHeight();
-      const pageBgRgb: [number, number, number] = [248, 250, 252];
-
-      const fillPageBg = () => {
-        doc.setFillColor(...pageBgRgb);
-        doc.rect(0, 0, imgWidth, pageHeightMm, "F");
-      };
-
-      // mm per canvas-pixel (x og y er lik pga samme skalering)
-      const mmPerPx = imgWidth / canvas.width;
-      const sliceHeightPxDefault = Math.max(1, Math.round(pageHeightMm / mmPerPx));
-
-      const overlapPx = Math.round(2 * scale);
-      const pageSliceHeightPx = sliceHeightPxDefault;
-      const stepPx = Math.max(1, pageSliceHeightPx - overlapPx);
-
-      const pageStartsPx: number[] = [0];
-      while (
-        pageStartsPx[pageStartsPx.length - 1] + pageSliceHeightPx <
-        canvas.height
-      ) {
-        pageStartsPx.push(pageStartsPx[pageStartsPx.length - 1] + stepPx);
-      }
-
-      pageStartsPx.forEach((pageStartPx, pageIndex) => {
-        const sliceHeightPxActual = Math.min(
-          pageSliceHeightPx,
-          canvas.height - pageStartPx,
-        );
-
-        // Avoid creating effectively empty tail pages.
-        if (sliceHeightPxActual <= overlapPx + 1) return;
-
-        if (pageIndex > 0) doc.addPage();
-        fillPageBg();
-
-        const sliceCanvas = document.createElement("canvas");
-        sliceCanvas.width = canvas.width;
-        sliceCanvas.height = sliceHeightPxActual;
-        const ctx = sliceCanvas.getContext("2d");
-        if (!ctx) return;
-
-        ctx.drawImage(
-          canvas,
-          0,
-          pageStartPx,
-          canvas.width,
-          sliceHeightPxActual,
-          0,
-          0,
-          canvas.width,
-          sliceHeightPxActual,
-        );
-
-        const sliceHeightMm = sliceHeightPxActual * mmPerPx;
-        const jpgData = sliceCanvas.toDataURL("image/jpeg", 0.72);
-        doc.addImage(jpgData, "JPEG", 0, 0, imgWidth, sliceHeightMm, undefined, "FAST");
-      });
-
-      doc.save("Martin-Gynther-Morkved-CV.pdf");
-    } catch (e) {
-      console.error("PDF export failed:", e);
-    } finally {
-      document.body.classList.remove("pdf-capture");
-    }
+  // PDF lages av nettleserens utskrift (se @media print i globals.css),
+  // slik at teksten blir ekte og kan markeres/kopieres.
+  const handleDownloadPDF = useCallback(() => {
+    // Nettleseren bruker sidetittelen som foreslått filnavn
+    const originalTitle = document.title;
+    document.title = "Martin-Gynther-Morkved-CV";
+    window.addEventListener(
+      "afterprint",
+      () => {
+        document.title = originalTitle;
+      },
+      { once: true },
+    );
+    window.print();
   }, []);
 
   return (
-    <aside className="flex flex-col items-center lg:items-stretch w-full max-w-[300px] lg:max-w-none">
+    <aside className="cv-sidebar flex flex-col items-center lg:items-stretch w-full max-w-[300px] lg:max-w-none">
       <div className="relative w-full overflow-hidden rounded-2xl bg-surface shadow-lg ring-1 ring-border">
         {/* Name, title, contact */}
-        <div className="bg-foreground px-5 py-4 text-center lg:text-left">
+        <div className="cv-sidebar-card bg-foreground px-5 py-4 text-center lg:text-left">
           <h1 className="text-lg font-bold tracking-tight text-surface">
             {name}
           </h1>
-          <p className="cv-sidebar-title mt-0.5 text-xs font-medium uppercase tracking-wider text-surface/80">
+          <p className="mt-0.5 text-xs font-medium uppercase tracking-wider text-surface/80">
             {title}
           </p>
-          <nav className="cv-contact-nav mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-surface/80 lg:justify-start">
+          <nav className="mt-3 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-surface/80 lg:justify-start print:hidden">
             <a
               href={`mailto:${email}`}
               className="transition-colors hover:text-surface"
@@ -191,15 +65,22 @@ export function CVSidebar({
               Telefon
             </a>
           </nav>
-          <div className="cv-pdf-contact mt-3 hidden text-xs text-surface/80 break-all">
-            <p>{email}</p>
+          {/* Full kontaktinfo vises bare i PDF/utskrift */}
+          <div className="mt-3 hidden text-xs text-surface/80 break-all print:block">
+            <p>
+              <a href={`mailto:${email}`}>{email}</a>
+            </p>
             <p className="mt-1">{phone}</p>
             <p className="mt-2 font-medium text-surface">GitHub:</p>
-            <p className="mt-0.5">{githubUrl}</p>
+            <p className="mt-0.5">
+              <a href={githubUrl}>{githubUrl}</a>
+            </p>
             <p className="mt-2 font-medium text-surface">LinkedIn:</p>
-            <p className="mt-0.5">{linkedinUrl}</p>
+            <p className="mt-0.5">
+              <a href={linkedinUrl}>{linkedinUrl}</a>
+            </p>
           </div>
-          <div className="cv-contact-icons mt-3 flex justify-center gap-3 lg:justify-start">
+          <div className="mt-3 flex justify-center gap-3 lg:justify-start print:hidden">
             <a
               href={githubUrl}
               target="_blank"
@@ -240,13 +121,13 @@ export function CVSidebar({
         </div>
       </div>
 
-      <div className="mt-6 flex justify-center lg:justify-start">
-        <Button type="button" onClick={handleDownloadPDF} data-pdf-ignore="true">
+      <div className="mt-6 flex justify-center lg:justify-start print:hidden">
+        <Button type="button" onClick={handleDownloadPDF}>
           Last ned CV
         </Button>
       </div>
 
-      <p className="mt-4 text-xs leading-relaxed text-muted text-center lg:text-left">
+      <p className="cv-sidebar-about mt-4 text-xs leading-relaxed text-muted text-center lg:text-left">
         {cvSidebarAbout}
       </p>
     </aside>

@@ -17,7 +17,11 @@ export function CVSection({
   sectionId,
 }: CVSectionProps) {
 
-  const topClass = spaciousTop ? "mt-44" : compact ? "mt-10" : "mt-12";
+  const topClass = spaciousTop
+    ? "cv-section-spacious mt-44"
+    : compact
+      ? "mt-10"
+      : "mt-12";
   // Når seksjonen havner øverst på en ny PDF-side (spaciousTop),
   // vil vi at overskrift og første innhold skal sitte tettere sammen
   // slik at de ikke blir delt over to A4-skiver.

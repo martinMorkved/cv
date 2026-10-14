@@ -26,7 +26,7 @@ function renderBulletContent(bullet: string | BulletWithBuzzWord) {
 export function CVExperienceItem({ item, emphasize = false }: CVExperienceItemProps) {
   if (emphasize) {
     return (
-      <article className="rounded-2xl bg-surface p-8 shadow-sm ring-1 ring-border">
+      <article className="cv-experience-item rounded-2xl bg-surface p-8 shadow-sm ring-1 ring-border">
         <div className="border-l-4 border-accent pl-6">
           <p className="text-xs font-medium uppercase tracking-wider text-muted">
             {item.period}
@@ -56,7 +56,7 @@ export function CVExperienceItem({ item, emphasize = false }: CVExperienceItemPr
   }
 
   return (
-    <div className="border-l-2 border-border pl-5 py-1">
+    <div className="cv-experience-item border-l-2 border-border pl-5 py-1">
       <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
         <span className="text-sm font-medium text-muted">{item.period}</span>
         <span className="font-semibold text-foreground">{item.role}</span>
