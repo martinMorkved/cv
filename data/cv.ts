@@ -46,7 +46,7 @@ export const experience: ExperienceItem[] = [
             "Utviklet bl.a. REST API for driftsmeldinger der kunden registrerer status ett sted, og løsningen automatisk oppdaterer synlig banner på forsiden. Dette sparer tid, fjerner behovet for å logge inn i WordPress ved hendelser og gjør det enklere å koble driftsrutiner inn i egne interne prosesser.",
         },
       },
-      "Bygger og vedlikeholder webbaserte løsninger med JavaScript, PHP, HTML og SCSS",
+      "Bygger og vedlikeholder webbaserte løsninger med JavaScript, PHP, HTML og SCSS.",
       "Videreutvikler funksjonalitet og skreddersydde løsninger basert på kundebehov.",
       "Estimerer og planlegger oppgaver sammen med prosjektleder, og følger opp krav og endringer underveis i prosjektene.",
       "Bidrar med løsningsforslag og tekniske vurderinger i prosjekter.",

@@ -42,7 +42,7 @@ export function CVSidebar({
 
   return (
     <aside className="cv-sidebar flex flex-col items-center lg:items-stretch w-full max-w-[300px] lg:max-w-none">
-      <div className="relative w-full overflow-hidden rounded-2xl bg-surface shadow-lg ring-1 ring-border">
+      <div className="w-full overflow-hidden rounded-2xl bg-surface shadow-lg ring-1 ring-border">
         {/* Name, title, contact */}
         <div className="cv-sidebar-card bg-foreground px-5 py-4 text-center lg:text-left">
           <h1 className="text-lg font-bold tracking-tight text-surface">

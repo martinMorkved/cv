@@ -98,6 +98,12 @@ h4 {
     text-align: left;
   }
 
+  /* Ekstra ordavstand så enkle PDF-lesere (ATS) ikke slår sammen ordene i navnet */
+  .cv-sidebar h1 {
+    letter-spacing: normal;
+    word-spacing: 0.15em;
+  }
+
   /* Skygger ser grumsete ut på papir; ring-rammer beholdes */
   .cv-page * {
     --tw-shadow: 0 0 #0000;
