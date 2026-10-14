@@ -28,7 +28,7 @@ export const cvHeader = {
 };
 
 export const cvGoal =
-  "Utvikler i Doghouse i Trondheim med erfaring fra webutvikling, API-integrasjoner og kundedrevne løsninger. Følger prosjekter tett fra kundemøte til ferdig løsning. Bygger egne prosjekter med React, Next.js og TypeScript for å videreutvikle frontend-kompetanse.";
+  "Utvikler med over 5 års erfaring fra webutvikling i produksjon for kunder i offentlig og privat sektor. Følger prosjekter fra kundemøte og designprosess til ferdig, tilgjengelig løsning. Bygger egne fullstack-prosjekter med React, Next.js og TypeScript, med autentisering, database og API-integrasjoner.";
 
 export const experience: ExperienceItem[] = [
   {
@@ -36,8 +36,10 @@ export const experience: ExperienceItem[] = [
     role: "Utvikler",
     place: "Doghouse AS",
     description:
-      "Utvikler i byrå som leverer webbaserte løsninger for kunder i offentlig og privat sektor. Jobber med utvikling, videreutvikling og vedlikehold av kundeløsninger, og følger prosjekter fra behovskartlegging til ferdig leveranse.",
+      "Jobber i et byrå som leverer webbaserte løsninger for kunder i offentlig og privat sektor. Utvikler, videreutvikler og vedlikeholder kundeløsninger, og følger prosjekter fra behovskartlegging til ferdig leveranse.",
     bullets: [
+      "Samarbeidet med designer om redesignet av konsek.no (Konsek Trøndelag IKS), med ansvar for WCAG 2.1 AA-krav og teknisk gjennomførbarhet.",
+      "Sikrer universell utforming (WCAG 2.1 AA) og GDPR-krav i leveranser til offentlig og privat sektor.",
       {
         text: "Utvikler og integrerer REST API-er mot interne og eksterne systemer.",
         buzzWord: {
@@ -50,16 +52,15 @@ export const experience: ExperienceItem[] = [
       "Videreutvikler funksjonalitet og skreddersydde løsninger basert på kundebehov.",
       "Estimerer og planlegger oppgaver sammen med prosjektleder, og følger opp krav og endringer underveis i prosjektene.",
       "Bidrar med løsningsforslag og tekniske vurderinger i prosjekter.",
-      "Arbeider med universell utforming og GDPR-relaterte krav i leveranser.",
       "Planlegger og gjennomfører foto til prosjekter og kampanjer ved behov.",
     ],
   },
   {
     period: "2011–2021",
     role: "Fotograf",
-    place: "MGMPHOTOS",
+    place: "Freelance",
     description:
-      "Freelance fotograf for bedrifter og privatpersoner. Planlegger og gjennomfører fotooppdrag fra behovskartlegging til ferdig levert materiale, ofte i tett dialog med byråer og markedsavdelinger. Erfaring fra større kommersielle prosjekter (bl.a. via Kommunikasjonshuset Involve) har gitt meg et skarpt blikk for visuell historiefortelling, komposisjon og merkevareprofil. Det bruker jeg aktivt når jeg designer og bygger brukerflater.",
+      "Freelancefotograf for bedrifter og privatpersoner. Planla og gjennomførte fotooppdrag fra behovskartlegging til ferdig levert materiale, ofte i tett dialog med byråer og markedsavdelinger. Erfaring fra større kommersielle prosjekter (bl.a. via Kommunikasjonshuset Involve) har gitt meg et skarpt blikk for visuell historiefortelling, komposisjon og merkevareprofil – noe jeg tar med meg når jeg bygger brukerflater.",
   },
   {
     period: "2011",
@@ -72,7 +73,7 @@ export const experience: ExperienceItem[] = [
     role: "Fotoansvarlig",
     place: "Nordhordland Folkehøgskule",
     description:
-      "Fotoansvarlig for Årboken: prosjektledelse, fotografering, utvelgelse og redigering.",
+      "Fotoansvarlig for årboken: prosjektledelse, fotografering, utvelgelse og redigering.",
   },
   {
     period: "2006",
@@ -131,16 +132,21 @@ export const skillsGroups: SkillsGroup[] = [
       "Next.js",
       "HTML",
       "CSS / SCSS",
+      "Tailwind CSS",
       "jQuery",
     ],
   },
   {
     label: "Backend & integrasjon",
-    items: ["PHP", "REST API-er", "WordPress", "MySQL"],
+    items: ["PHP", "REST API-er", "WordPress", "MySQL", "Supabase", "PostgreSQL", "Prisma"],
   },
   {
     label: "Verktøy",
     items: ["Git", "Figma", "Adobe Photoshop", "MS Office", "AI-assisterte utviklingsverktøy"],
+  },
+  {
+    label: "Universell utforming",
+    items: ["WCAG 2.1 / 2.2 AA", "Kontrastvalidering", "Tilgjengelighetstesting"],
   },
   {
     label: "Personvern & compliance",
@@ -149,6 +155,6 @@ export const skillsGroups: SkillsGroup[] = [
 ];
 
 export const cvSidebarAbout =
-  "Utvikler med erfaring fra webutvikling, API-integrasjoner og kundedrevne løsninger. Bakgrunn som fotograf gir et ekstra fokus på struktur, brukeropplevelse og visuell kommunikasjon i digitale produkter. Egne prosjekter deler jeg på GitHub og publiserer ofte med Vercel.";
+  "Bakgrunn som fotograf og erfaring med universell utforming (WCAG). Bygger løsninger som er brukervennlige, tilgjengelige og visuelt gjennomarbeidede.";
 
 export const referencesNote = "Referanser oppgis ved forespørsel.";
