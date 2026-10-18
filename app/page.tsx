@@ -11,23 +11,23 @@ export default function Home() {
               Martin Gynther Mørkved
             </h1>
             <p className="text-base font-medium text-foreground">
-              Utvikler med erfaring fra webutvikling, API-integrasjoner og
-              kundedrevne løsninger.
+              Bygger brukervennlige og tilgjengelige webløsninger – fra
+              kundemøte til ferdig produkt.
             </p>
             <p className="max-w-prose text-sm leading-relaxed text-muted">
-              Her finner du CV, erfaring og egne prosjekter bygget med moderne
-              frontend-teknologi som React, Next.js og TypeScript.
+              Her finner du CV, erfaring og egne prosjekter bygget med React,
+              Next.js og TypeScript.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="/cv"
-                className="inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-surface shadow-sm transition hover:bg-foreground/90"
+                className="spin-border inline-flex items-center justify-center rounded-full px-[18px] py-2 text-sm font-semibold text-foreground shadow-sm"
               >
                 Se CV
               </a>
               <a
                 href="/projects"
-                className="inline-flex items-center justify-center rounded-full border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition hover:border-border hover:bg-surface/80"
+                className="inline-flex items-center justify-center rounded-full border border-border bg-surface px-[19px] py-[9px] text-sm font-semibold text-foreground shadow-sm transition hover:bg-background"
               >
                 Prosjekter
               </a>
@@ -39,16 +39,15 @@ export default function Home() {
               Kort om meg
             </h2>
             <p className="text-sm leading-relaxed text-muted">
-              Jeg jobber i dag som utvikler i Doghouse i Trondheim, der jeg
-              følger prosjekter fra kundemøte til ferdig løsning. Arbeidet
-              består blant annet av webutvikling, API-integrasjoner og
-              videreutvikling av eksisterende løsninger for kunder i offentlig
-              og privat sektor.
+              Jeg jobber som utvikler i Doghouse i Trondheim, der jeg følger
+              prosjekter fra kundemøte til ferdig løsning for kunder i offentlig
+              og privat sektor. Arbeidet består blant annet av webutvikling,
+              API-integrasjoner og universell utforming etter WCAG.
             </p>
             <p className="text-sm leading-relaxed text-muted">
-              Ved siden av jobb bygger jeg egne prosjekter for å videreutvikle
-              kompetansen min innen moderne frontend-utvikling og
-              brukeropplevelse.
+              Bakgrunnen som fotograf gir meg et godt øye for det visuelle, og
+              ved siden av jobb bygger jeg egne fullstack-prosjekter for å
+              utvikle meg videre innen moderne frontend og brukeropplevelse.
             </p>
           </section>
         </div>

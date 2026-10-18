@@ -35,6 +35,69 @@ h4 {
   font-family: var(--font-heading), system-ui, sans-serif;
 }
 
+/* "Se CV"-knappen: en lysstripe går tre runder rundt kanten,
+   deretter fylles hele kanten med aksentfargen */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Kantfargen utenfor stripen; samme som --border */
+@property --spin-base {
+  syntax: "<color>";
+  initial-value: #e2e8f0;
+  inherits: false;
+}
+
+.spin-border {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    conic-gradient(
+        from var(--border-angle),
+        var(--spin-base) 0 45%,
+        var(--accent) 75%,
+        var(--spin-base) 100%
+      )
+      border-box;
+  animation:
+    spin-border 4s linear 3,
+    spin-border-fill 0.6s ease-out 12s forwards;
+}
+
+.spin-border:hover {
+  background:
+    linear-gradient(var(--background), var(--background)) padding-box,
+    conic-gradient(
+        from var(--border-angle),
+        var(--spin-base) 0 45%,
+        var(--accent) 75%,
+        var(--spin-base) 100%
+      )
+      border-box;
+}
+
+@keyframes spin-border {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+@keyframes spin-border-fill {
+  to {
+    --spin-base: var(--accent);
+  }
+}
+
+/* Uten bevegelse: vis sluttilstanden med en gang */
+@media (prefers-reduced-motion: reduce) {
+  .spin-border {
+    animation: none;
+    --spin-base: var(--accent);
+  }
+}
+
 /* CV page: always light theme, modern look */
 .cv-page {
   background: var(--background);

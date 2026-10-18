@@ -22,10 +22,10 @@ export function ProjectShowcase({ project }: ProjectShowcaseProps) {
           </p>
         </header>
         <p className="text-sm text-muted">{project.description}</p>
-        <ProjectLinks liveUrl={project.liveUrl} repoUrl={project.repoUrl} />
+        <ProjectLinks name={project.name} liveUrl={project.liveUrl} repoUrl={project.repoUrl} />
       </section>
 
-      {project.images.length > 0 && <ImageCarousel images={project.images} />}
+      {project.images.length > 0 && <ImageCarousel images={project.images} portrait={project.portraitImages} />}
     </div>
   );
 }

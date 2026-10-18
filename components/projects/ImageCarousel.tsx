@@ -6,9 +6,10 @@ import type { ProjectImage } from "@/data/projects";
 
 type ImageCarouselProps = {
   images: ProjectImage[];
+  portrait?: boolean;
 };
 
-export function ImageCarousel({ images }: ImageCarouselProps) {
+export function ImageCarousel({ images, portrait = false }: ImageCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const next = () => setActiveIndex((i) => (i + 1) % images.length);
@@ -20,15 +21,21 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
 
   return (
     <section className="space-y-4 rounded-2xl border border-border bg-surface p-5 shadow-sm">
-      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border bg-background">
-        <Image
-          key={current.src}
-          src={current.src}
-          alt={current.alt}
-          fill
-          className="object-cover object-top"
-          sizes="(max-width: 1024px) 100vw, 420px"
-        />
+      <div
+        className={`relative w-full overflow-hidden rounded-xl border border-border bg-background ${
+          portrait ? "aspect-[3/4] py-4" : "aspect-[16/10]"
+        }`}
+      >
+        <div className="relative h-full w-full">
+          <Image
+            key={current.src}
+            src={current.src}
+            alt={current.alt}
+            fill
+            className={portrait ? "object-contain" : "object-cover object-top"}
+            sizes="(max-width: 1024px) 100vw, 420px"
+          />
+        </div>
       </div>
 
       <div className="flex items-center justify-between gap-4 text-xs">
@@ -52,6 +59,7 @@ export function ImageCarousel({ images }: ImageCarouselProps) {
                 index === activeIndex ? "bg-foreground" : "bg-border hover:bg-foreground/60"
               }`}
               aria-label={`Vis bilde ${index + 1}`}
+              aria-current={index === activeIndex ? "true" : undefined}
             />
           ))}
         </div>

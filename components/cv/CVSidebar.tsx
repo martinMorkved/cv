@@ -77,7 +77,7 @@ export function CVSidebar({
             </p>
             <p className="mt-2 font-medium text-surface">LinkedIn:</p>
             <p className="mt-0.5">
-              <a href={linkedinUrl}>{linkedinUrl}</a>
+              <a href={linkedinUrl}>linkedin.com/in/martin-mørkved-a759902b3</a>
             </p>
           </div>
           <div className="mt-3 flex justify-center gap-3 lg:justify-start print:hidden">

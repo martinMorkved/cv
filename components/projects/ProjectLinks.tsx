@@ -1,4 +1,5 @@
 type ProjectLinksProps = {
+  name: string;
   liveUrl?: string;
   repoUrl?: string;
 };
@@ -6,7 +7,7 @@ type ProjectLinksProps = {
 const linkButtonClass =
   "inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-foreground transition hover:border-border hover:bg-foreground hover:text-surface";
 
-export function ProjectLinks({ liveUrl, repoUrl }: ProjectLinksProps) {
+export function ProjectLinks({ name, liveUrl, repoUrl }: ProjectLinksProps) {
   if (!liveUrl && !repoUrl) return null;
 
   return (
@@ -16,7 +17,7 @@ export function ProjectLinks({ liveUrl, repoUrl }: ProjectLinksProps) {
           href={liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Åpne prosjektet"
+          aria-label={`Åpne ${name}`}
           className={linkButtonClass}
         >
           <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4">
@@ -32,7 +33,7 @@ export function ProjectLinks({ liveUrl, repoUrl }: ProjectLinksProps) {
           href={repoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Åpne GitHub-repositoriet"
+          aria-label={`Åpne GitHub-repositoriet for ${name}`}
           className={linkButtonClass}
         >
           <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4">
