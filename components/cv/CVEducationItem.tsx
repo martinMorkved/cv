@@ -1,4 +1,4 @@
-import type { EducationItem } from "@/data/cv";
+import { formatPeriod, type EducationItem } from "@/data/cv";
 
 type CVEducationItemProps = {
   item: EducationItem;
@@ -7,7 +7,7 @@ type CVEducationItemProps = {
 export function CVEducationItem({ item }: CVEducationItemProps) {
   return (
     <div className="cv-education-item flex flex-wrap items-baseline gap-x-2 gap-y-1 py-2 text-sm border-b border-border/60 last:border-0">
-      <span className="text-muted">{item.period}</span>
+      <span className="text-muted">{formatPeriod(item)}</span>
       <span className="font-medium text-foreground">{item.programme}</span>
       <span className="text-muted">· {item.school}</span>
       {item.note && (

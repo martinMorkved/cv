@@ -3,16 +3,29 @@ export type BulletWithBuzzWord = {
   buzzWord: { term: string; explanation: string };
 };
 
-export type ExperienceItem = {
-  period: string;
+/** "ÅÅÅÅ-MM". `end: "present"` = pågående; uten `end` = én enkelt måned. */
+export type Period = {
+  start: string;
+  end?: string | "present";
+};
+
+export function formatPeriod({ start, end }: Period): string {
+  const fmt = (ym: string) => {
+    const [year, month] = ym.split("-");
+    return `${month}/${year}`;
+  };
+  if (!end || end === start) return fmt(start);
+  return `${fmt(start)} - ${end === "present" ? "nå" : fmt(end)}`;
+}
+
+export type ExperienceItem = Period & {
   role: string;
   place: string;
   description?: string;
   bullets?: (string | BulletWithBuzzWord)[];
 };
 
-export type EducationItem = {
-  period: string;
+export type EducationItem = Period & {
   programme: string;
   school: string;
   note?: string;
@@ -32,7 +45,7 @@ export const cvGoal =
 
 export const experience: ExperienceItem[] = [
   {
-    period: "2021–i dag",
+    start: "2021-11", end: "present",
     role: "Utvikler",
     place: "Doghouse AS",
     description:
@@ -56,27 +69,27 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    period: "2011–2021",
+    start: "2011-08", end: "2021-11",
     role: "Fotograf",
     place: "Freelance",
     description:
       "Freelancefotograf for bedrifter og privatpersoner. Planla og gjennomførte fotooppdrag fra behovskartlegging til ferdig levert materiale, ofte i tett dialog med byråer og markedsavdelinger. Erfaring fra større kommersielle prosjekter (bl.a. via Kommunikasjonshuset Involve) har gitt meg et skarpt blikk for visuell historiefortelling, komposisjon og merkevareprofil – noe jeg tar med meg når jeg bygger brukerflater.",
   },
   {
-    period: "2011",
+    start: "2011-11", end: "2011-12",
     role: "Produksjonsansvarlig",
     place: "TV Nordhordland",
     description: "Ansvarlig for produksjon av julekalender for WebTV.",
   },
   {
-    period: "2010–2011",
+    start: "2010-11", end: "2011-04",
     role: "Fotoansvarlig",
     place: "Nordhordland Folkehøgskule",
     description:
       "Fotoansvarlig for årboken: prosjektledelse, fotografering, utvelgelse og redigering.",
   },
   {
-    period: "2006",
+    start: "2006-06",
     role: "Butikkmedarbeider",
     place: "Rimi",
     description: "Lager- og butikkmedarbeider. Kundeservice.",
@@ -85,30 +98,30 @@ export const experience: ExperienceItem[] = [
 
 export const education: EducationItem[] = [
   {
-    period: "2015–2019",
+    start: "2015-08", end: "2019-06",
     programme: "IT-støttet bedriftsutvikling",
     school: "NTNU",
     note: "Bachelor: informatikk, informasjonssikkerhet, entreprenørskap, produktforvaltning, økonomi, GDPR. Programmering: .NET, HTML5, CSS, JavaScript, PHP, databaser, SharePoint.",
   },
   {
-    period: "2011–2013",
+    start: "2011-08", end: "2013-05",
     programme: "Fotograf",
     school: "Norges Kreative Høyskole",
     note: "Mørkerom, studio, journalistikk, mote, Photoshop/redigering, portrett, historie, film.",
   },
   {
-    period: "2011",
+    start: "2011-08",
     programme: "Kreative kurs",
     school: "Norges Kreative Høyskole",
     note: "Photoshop, Illustrator, InDesign.",
   },
   {
-    period: "2010–2011",
+    start: "2010-08", end: "2011-06",
     programme: "Foto, DVD og grafisk design",
     school: "Nordhordland Folkehøgskule",
   },
   {
-    period: "2007–2011",
+    start: "2007-08", end: "2011-06",
     programme: "Generell studiekompetanse",
     school: "Byåsen Videregående Skole",
     note: "Studiespesialisering: entreprenørskap, samfunnsøkonomi, engelsk, norsk, matematikk, kommunikasjon og kultur.",

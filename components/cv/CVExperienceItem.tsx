@@ -1,4 +1,4 @@
-import type { ExperienceItem, BulletWithBuzzWord } from "@/data/cv";
+import { formatPeriod, type ExperienceItem, type BulletWithBuzzWord } from "@/data/cv";
 import { BuzzWord } from "@/components/cv/BuzzWord";
 
 type CVExperienceItemProps = {
@@ -29,7 +29,7 @@ export function CVExperienceItem({ item, emphasize = false }: CVExperienceItemPr
       <article className="cv-experience-item rounded-2xl bg-surface p-8 shadow-sm ring-1 ring-border">
         <div className="border-l-4 border-accent pl-6">
           <p className="text-xs font-medium uppercase tracking-wider text-muted">
-            {item.period}
+            {formatPeriod(item)}
           </p>
           <h3 className="cv-role-title mt-2 text-3xl font-bold tracking-tight text-foreground">
             {item.role}
@@ -58,7 +58,7 @@ export function CVExperienceItem({ item, emphasize = false }: CVExperienceItemPr
   return (
     <div className="cv-experience-item border-l-2 border-border pl-5 py-1">
       <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-        <span className="text-sm font-medium text-muted">{item.period}</span>
+        <span className="text-sm font-medium text-muted">{formatPeriod(item)}</span>
         <span className="font-semibold text-foreground">{item.role}</span>
         <span className="text-muted">· {item.place}</span>
       </div>
