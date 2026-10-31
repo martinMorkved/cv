@@ -21,7 +21,7 @@ export const projects: Project[] = [
     id: "hfdd",
     name: "HFDD",
     title: "HFDD (Have Fun Don't Die) – logg økter, bygg program, følg fremgang",
-    tech: ["React", "TypeScript", "Vite", "Supabase", "Tailwind CSS"],
+    tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Supabase", "PostgreSQL", "Capacitor"],
     liveUrl: "https://www.hfdd.no/",
     description:
       "Jeg ville ha et eget treningsverktøy, og ikke minst se om jeg klarte å bygge det selv. Brukere kan opprette og følge treningsprogrammer og logge økter med sett/reps, notater og vurdering. Siden vennene mine også skulle bruke appen, støtter den ulike programstrukturer (ukevis, roterende, blokk, frekvens) – det mest krevende var å forstå og implementere mesosykluser. Øvelsesbiblioteket er felles for alle, så nye forslag må godkjennes av admin for å unngå duplikater med litt ulike navn. Jeg valgte Supabase fordi gratisnivået dekker både rollebasert autentisering og database.",
