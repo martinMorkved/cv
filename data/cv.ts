@@ -9,10 +9,12 @@ export type Period = {
   end?: string | "present";
 };
 
+const MONTHS = ["jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug", "sep", "okt", "nov", "des"];
+
 export function formatPeriod({ start, end }: Period): string {
   const fmt = (ym: string) => {
     const [year, month] = ym.split("-");
-    return `${month}/${year}`;
+    return `${MONTHS[Number(month) - 1]} ${year}`;
   };
   if (!end || end === start) return fmt(start);
   return `${fmt(start)} - ${end === "present" ? "nå" : fmt(end)}`;
